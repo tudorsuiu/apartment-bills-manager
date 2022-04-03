@@ -1,6 +1,11 @@
-#include <iostream>
+#include "Tests/Test.h"
+#include "UserInterface/Console.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Test test;
+    test.all();
+
+    Console console;
+    console.runMenu();
     return 0;
 }

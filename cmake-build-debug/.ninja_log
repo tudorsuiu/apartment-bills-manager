@@ -1,0 +1,14 @@
+# ninja log v5
+25	320	6707085558920214	CMakeFiles/lab_78_tudorsuiu.dir/Tests/Test.cpp.obj	1ff9c7c1da90b646
+12	290	6707085558610216	CMakeFiles/lab_78_tudorsuiu.dir/Repository/Repository.cpp.obj	59901a9789b90318
+3	267	6707085970084545	CMakeFiles/lab_78_tudorsuiu.dir/UserInterface/Console.cpp.obj	f3b9b4b3f3495dfd
+15	296	6707085558680206	CMakeFiles/lab_78_tudorsuiu.dir/main.cpp.obj	755729772d216ba7
+21	304	6707085558760201	CMakeFiles/lab_78_tudorsuiu.dir/Domain/Vector.cpp.obj	141dd68c01a91727
+3	295	6707085558640214	CMakeFiles/lab_78_tudorsuiu.dir/Domain/Entity.cpp.obj	5ebeac08d5ec4267
+267	353	6707085970934527	lab_78_tudorsuiu.exe	e826c76b11686803
+10	275	6707087218284996	CMakeFiles/lab_78_tudorsuiu.dir/main.cpp.obj	755729772d216ba7
+14	294	6707087218503653	CMakeFiles/lab_78_tudorsuiu.dir/Domain/Vector.cpp.obj	141dd68c01a91727
+17	300	6707087218553617	CMakeFiles/lab_78_tudorsuiu.dir/Tests/Test.cpp.obj	1ff9c7c1da90b646
+2	322	6707087218783634	CMakeFiles/lab_78_tudorsuiu.dir/Repository/Repository.cpp.obj	59901a9789b90318
+22	346	6707087219013610	CMakeFiles/lab_78_tudorsuiu.dir/UserInterface/Console.cpp.obj	f3b9b4b3f3495dfd
+346	430	6707087219833619	lab_78_tudorsuiu.exe	e826c76b11686803

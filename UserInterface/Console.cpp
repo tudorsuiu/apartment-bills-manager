@@ -17,12 +17,12 @@ void Console::showMenu() {
 
 void Console::runMenu() {
     char option;
+    Entity entity;
     do {
         showMenu();
         std::cin >> option;
         switch (option) {
             case '1': {
-                Entity entity;
                 std::cin >> entity;
                 repository.addEntity(entity);
                 break;

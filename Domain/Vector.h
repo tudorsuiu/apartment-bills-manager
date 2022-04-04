@@ -19,7 +19,7 @@ private:
 public:
     Vector();
     ~Vector();
-    void push_back(const T& entity);
+    void push_back(T entity);
     int size() const;
     T at(int index) const;
 
@@ -53,7 +53,7 @@ void Vector<T>::resize() {
 }
 
 template<class T>
-void Vector<T>::push_back(const T& entity) {
+void Vector<T>::push_back(T entity) {
     if(_size == _capacity){
         resize();
     }

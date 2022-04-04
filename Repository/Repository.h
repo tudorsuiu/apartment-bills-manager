@@ -16,7 +16,7 @@ private:
 public:
     Repository();
     ~Repository();
-    void addEntity(const T& entity);
+    void addEntity(T entity);
     Vector<T> getAll();
     T getEntity(int index);
     int getSize();
@@ -33,7 +33,7 @@ template<class T>
 Repository<T>::~Repository() = default;
 
 template<class T>
-void Repository<T>::addEntity(const T& entity) {
+void Repository<T>::addEntity(T entity) {
     this->entities.push_back(entity);
 }
 

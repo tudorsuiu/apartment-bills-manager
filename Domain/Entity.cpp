@@ -47,4 +47,3 @@ std::ostream &operator<<(std::ostream &os, const Entity &entity) {
     os << "id: " << entity.id;
     return os;
 }
-

@@ -6,7 +6,6 @@
 #include "../Domain/Entity.h"
 #include "../Repository/Repository.h"
 #include <cassert>
-#include <iostream>
 
 void Test::constructors() {
     Entity entity = Entity(21);
@@ -20,7 +19,7 @@ void Test::getters() {
     Entity entity = Entity(21);
     assert(entity.getId() == 21);
 
-    Repository repository;
+    Repository<Entity> repository;
     Entity entity1 = Entity(1);
     Entity entity2 = Entity(2);
     Entity entity3 = Entity(3);

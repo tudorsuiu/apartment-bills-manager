@@ -10,7 +10,7 @@ void Console::showMenu() {
     std::cout << "_________------MENU------_________" << '\n';
     std::cout << "1. Add entity." << '\n';
     std::cout << "2. Check entities." << '\n';
-    std::cout << "3. Exit." << '\n';
+    std::cout << "x. Exit." << '\n';
     std::cout << "__________________________________" << '\n';
     std::cout << "Select option:";
 }

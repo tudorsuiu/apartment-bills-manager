@@ -6,15 +6,17 @@
 #define LAB_78_TUDORSUIU_CONSOLE_H
 
 
+#include <iostream>
 #include "../Repository/Repository.h"
 
 class Console {
 private:
-    Repository repository;
+    Repository<Entity> repository;
 public:
     void showMenu();
     void runMenu();
 };
+
 
 
 #endif //LAB_78_TUDORSUIU_CONSOLE_H

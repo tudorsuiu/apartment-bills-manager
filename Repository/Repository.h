@@ -10,20 +10,52 @@
 #include "../Domain/Entity.h"
 #include "../Domain/Vector.h"
 
-class Repository {
+template<class T> class Repository {
 private:
-    Vector entities;
+    Vector<T> entities;
 public:
     Repository();
     ~Repository();
-    void addEntity(Entity entity);
-    Vector getAll();
-    Entity getEntity(int index);
+    void addEntity(const T& entity);
+    Vector<T> getAll();
+    T getEntity(int index);
     int getSize();
 
-    friend std::ostream &
-    operator<<(std::ostream &os, const Repository &repository);
+    template<class Y>
+    friend std::ostream &operator<<(std::ostream &os, const Repository<Y> &repository);
 };
 
+template<class T>
+Repository<T>::Repository() {
+}
+
+template<class T>
+Repository<T>::~Repository() = default;
+
+template<class T>
+void Repository<T>::addEntity(const T& entity) {
+    this->entities.push_back(entity);
+}
+
+template<class T>
+Vector<T> Repository<T>::getAll() {
+    return entities;
+}
+
+template<class T>
+T Repository<T>::getEntity(int index) {
+    return entities.at(index);
+}
+
+template<class T>
+int Repository<T>::getSize() {
+    return this->entities.size();
+}
+
+template<class T>
+std::ostream &operator<<(std::ostream &os, const Repository<T> &repository) {
+    os << repository.entities;
+    return os;
+}
 
 #endif //LAB_78_TUDORSUIU_REPOSITORY_H

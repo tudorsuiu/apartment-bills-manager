@@ -21,8 +21,7 @@ public:
     T getEntity(int index);
     int getSize();
 
-    template<class Y>
-    friend std::ostream &operator<<(std::ostream &os, const Repository<Y> &repository);
+    friend std::ostream &operator<<(std::ostream &os, const Repository<T> &repository);
 };
 
 template<class T>

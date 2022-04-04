@@ -27,9 +27,11 @@ void Console::runMenu() {
                 repository.addEntity(entity);
                 break;
             }
-            case '2':
-                std::cout << repository.getAll();
+            case '2': {
+                Vector<Entity> v = repository.getAll();
+                std::cout << v;
                 break;
+            }
             case 'x':
                 break;
             default:

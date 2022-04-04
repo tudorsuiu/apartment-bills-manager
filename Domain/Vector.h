@@ -25,8 +25,7 @@ public:
 
     T operator[](int index) const;
 
-    template<class Y>
-    friend std::ostream &operator<<(std::ostream &os, const Vector<Y> &vector);
+    friend std::ostream &operator<<(std::ostream &os, const Vector<T> &vector);
 };
 
 template<class T>
@@ -57,7 +56,7 @@ void Vector<T>::push_back(T entity) {
     if(_size == _capacity){
         resize();
     }
-    this->_entities[_size] = entity;
+    _entities[_size] = entity;
     _size++;
 }
 

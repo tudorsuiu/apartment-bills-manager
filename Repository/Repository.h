@@ -21,11 +21,13 @@ public:
     T getEntity(int index);
     int getSize();
 
-    friend std::ostream &operator<<(std::ostream &os, const Repository<T> &repository);
+    template<class Y>
+    friend std::ostream &operator<<(std::ostream &os, const Repository<Y> &repository);
 };
 
 template<class T>
 Repository<T>::Repository() {
+
 }
 
 template<class T>
@@ -51,8 +53,8 @@ int Repository<T>::getSize() {
     return this->entities.size();
 }
 
-template<class T>
-std::ostream &operator<<(std::ostream &os, const Repository<T> &repository) {
+template<class Y>
+std::ostream &operator<<(std::ostream &os, const Repository<Y> &repository) {
     os << repository.entities;
     return os;
 }

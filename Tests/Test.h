@@ -8,7 +8,6 @@
 
 class Test {
 public:
-    void constructors();
     void getters();
     void setters();
     void all();

@@ -7,24 +7,73 @@
 
 
 #include <ostream>
-#include "Entity.h"
+#include "Apartment.h"
 
 template<class T> class Vector {
 private:
-    int CAPACITY_BATCH_SIZE = 1024;
+    int DEFAULT_CAPACITY = 10;
     T* _entities;
-    int _capacity{};
-    int _size{};
-    void resize();
+    int _capacity;
+    int _size;
+    void resize() {
+        _capacity = _capacity + DEFAULT_CAPACITY;
+        T* newEntities = new T[_capacity];
+        for (int i = 0; i < _size; i++) {
+            newEntities[i] = _entities[i];
+        }
+        delete[] _entities;
+        _entities = newEntities;
+    }
 public:
-    Vector();
-    Vector(const Vector<T>& vector);
-    ~Vector();
-    void push_back(T entity);
-    int size() const;
-    T at(int index) const;
+    Vector() {
+        _size = 0;
+        _capacity = DEFAULT_CAPACITY;
+        _entities = new T[_capacity];
+    }
 
-    T operator[](int index) const;
+    Vector(const Vector<T>& vector) {
+        this->_capacity = vector._capacity;
+        this->_size = vector._size;
+        T* newEntities = new T[_capacity];
+        for (int i = 0; i < _size; i++) {
+            newEntities[i] = vector._entities[i];
+        }
+        this->_entities = newEntities;
+    }
+
+    ~Vector() {
+        delete[] this->_entities;
+    }
+
+    void push_back(T entity) {
+        if(_size == _capacity){
+            resize();
+        }
+        _entities[_size] = entity;
+        _size++;
+    }
+
+    int size() const {
+        return this->_size;
+    }
+
+    T at(int index) const {
+        return this->_entities[index];
+    }
+
+    T operator[](int index) const {
+        return this->_entities[index];
+    }
+
+    Vector<T> &operator=(const Vector<T> &vector) {
+        this->size = vector._size;
+        this->_capacity = vector._capacity;
+        delete[] this->_entities;
+        for(int i = 0; i < _size; i++) {
+            this->_entities[i] = vector._entities[i];
+        }
+        return *this;
+    }
 
     friend std::ostream &operator<<(std::ostream &os, const Vector<T> &vector) {
         for(int i = 0; i < vector._size; i++) {
@@ -33,64 +82,5 @@ public:
         return os;
     }
 };
-
-template<class T>
-Vector<T>::Vector() {
-    _capacity = CAPACITY_BATCH_SIZE;
-    _entities = new T[_capacity];
-    _size = 0;
-}
-
-template<class T>
-Vector<T>::Vector(const Vector<T>& vector) {
-    this->_capacity = vector._capacity;
-    this->_size = vector._size;
-    auto* newEntities = new T[_capacity];
-    for (int i = 0; i < _size; i++) {
-        newEntities[i] = vector._entities[i];
-    }
-    this->_entities = newEntities;
-}
-
-
-template<class T>
-Vector<T>::~Vector() {
-    delete[] _entities;
-}
-
-template<class T>
-void Vector<T>::resize() {
-    _capacity = _capacity + CAPACITY_BATCH_SIZE;
-    auto* newEntities = new T[_capacity];
-    for (int i = 0; i < _size; i++) {
-        newEntities[i] = _entities[i];
-    }
-    delete[] _entities;
-    _entities = newEntities;
-}
-
-template<class T>
-void Vector<T>::push_back(T entity) {
-    if(_size == _capacity){
-        resize();
-    }
-    _entities[_size] = entity;
-    _size++;
-}
-
-template<class T>
-int Vector<T>::size() const {
-    return this->_size;
-}
-
-template<class T>
-T Vector<T>::operator[](int index) const{
-    return this->_entities[index];
-}
-
-template<class T>
-T Vector<T>::at(int index) const {
-    return this->_entities[index];
-}
 
 #endif //LAB_78_TUDORSUIU_VECTOR_H

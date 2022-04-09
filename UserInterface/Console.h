@@ -11,7 +11,7 @@
 
 class Console {
 private:
-    Repository<Entity> repository;
+    Repository<Apartment> repository;
 public:
     void showMenu();
     void runMenu();

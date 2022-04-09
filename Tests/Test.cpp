@@ -3,44 +3,47 @@
 //
 
 #include "Test.h"
-#include "../Domain/Entity.h"
-#include "../Repository/Repository.h"
+#include "../Domain/Apartment.h"
 #include <cassert>
-
-void Test::constructors() {
-    Entity entity = Entity(21);
-    assert(entity.getId() == 21);
-
-    Entity entityCopy = entity;
-    assert(entityCopy.getId() == 21);
-}
+#include <iostream>
+#include <cstring>
 
 void Test::getters() {
-    Entity entity = Entity(21);
-    assert(entity.getId() == 21);
+    Apartment apartment;
 
-    Repository<Entity> repository;
-    Entity entity1 = Entity(1);
-    Entity entity2 = Entity(2);
-    Entity entity3 = Entity(3);
-    repository.addEntity(entity1);
-    repository.addEntity(entity2);
-    repository.addEntity(entity3);
+    assert(apartment.getNumber() == 0);
+    assert(apartment.getType() == nullptr);
+    assert(apartment.getTotal() == 0);
 
-    assert(repository.getSize() == 3);
-    assert(repository.getEntity(0).getId() == 1);
-    assert(repository.getEntity(1).getId() == 2);
-    assert(repository.getEntity(2).getId() == 3);
+    char* type = new char[10]{"asociatie"};
+
+    Apartment apartment1(32, type, 98);
+
+    assert(apartment1.getNumber() == 32);
+    assert(std::strcmp(apartment1.getType(), type) == 0);
+    assert(apartment1.getTotal() == 98);
+
+    delete[] type;
 }
 
 void Test::setters() {
-    Entity entity;
-    entity.setId(21);
-    assert(entity.getId() == 21);
+    Apartment apartment;
+
+    char* type = new char[4]{"gaz"};
+
+    apartment.setNumber(32);
+    apartment.setType(type);
+    apartment.setTotal(98);
+
+    assert(apartment.getNumber() == 32);
+    assert(std::strcmp(apartment.getType(), type) == 0);
+    assert(apartment.getTotal() == 98);
+
+    delete[] type;
 }
 
 void Test::all() {
-    this->constructors();
-    this->getters();
-    this->setters();
+    getters();
+    setters();
+    std::cout << "All tests passed!";
 }

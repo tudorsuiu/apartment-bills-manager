@@ -8,8 +8,8 @@
 void Console::showMenu() {
     std::cout << '\n';
     std::cout << "_________------MENU------_________" << '\n';
-    std::cout << "1. Add entity." << '\n';
-    std::cout << "2. Check entities." << '\n';
+    std::cout << "1. Add apartment bills." << '\n';
+    std::cout << "2. Check bills." << '\n';
     std::cout << "x. Exit." << '\n';
     std::cout << "__________________________________" << '\n';
     std::cout << "Select option:";
@@ -17,25 +17,24 @@ void Console::showMenu() {
 
 void Console::runMenu() {
     char option;
-    Entity entity;
+    Apartment apartment;
     do {
         showMenu();
         std::cin >> option;
         switch (option) {
             case '1': {
-                std::cin >> entity;
-                repository.addEntity(entity);
+                std::cin >> apartment;
+                repository.addEntity(apartment);
                 break;
             }
             case '2': {
-                Vector<Entity> v = repository.getAll();
-                std::cout << v;
+                std::cout << repository;
                 break;
             }
             case 'x':
                 break;
             default:
-                std::cout << "Optiune gresita!" << '\n';
+                std::cout << "Optiune gresita! Reincercati!";
                 break;
         }
     }while(option != 'x');

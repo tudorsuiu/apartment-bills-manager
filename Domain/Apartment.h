@@ -15,7 +15,7 @@ private:
     unsigned int total;
 public:
     Apartment();
-    Apartment(unsigned int apartmentNumber, char* type, unsigned int total);
+    Apartment(unsigned int apartmentNumber, const char* type, unsigned int total);
     Apartment(const Apartment &entity);
     ~Apartment();
 
@@ -25,6 +25,8 @@ public:
     void setType(char *type);
     unsigned int getTotal() const;
     void setTotal(unsigned int total);
+
+    Apartment& operator=(const Apartment& apartment);
 
     bool operator==(const Apartment &entity) const;
     bool operator!=(const Apartment &entity) const;

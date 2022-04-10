@@ -12,7 +12,7 @@ Apartment::Apartment() {
     this->total = 0;
 }
 
-Apartment::Apartment(unsigned int apartmentNumber, char* billType, unsigned int billTotal) {
+Apartment::Apartment(unsigned int apartmentNumber, const char* billType, unsigned int billTotal) {
     this->number = apartmentNumber;
     this->type = new char[strlen(billType) + 1];
     strcpy(this->type, billType);
@@ -27,7 +27,8 @@ Apartment::Apartment(const Apartment &apartment) {
 }
 
 Apartment::~Apartment() {
-    delete[] type;
+    delete[] this->type;
+    this->type = nullptr;
 }
 
 unsigned int Apartment::getNumber() const {
@@ -63,6 +64,17 @@ bool Apartment::operator==(const Apartment &entity) const {
 
 bool Apartment::operator!=(const Apartment &entity) const {
     return !(*this == entity);
+}
+
+Apartment &Apartment::operator=(const Apartment &apartment) {
+    if(this->type != nullptr) {
+        delete[] this->type;
+    }
+    this->total = apartment.total;
+    this->number = apartment.number;
+    this->type = new char[strlen(apartment.type) + 1];
+    strcpy(this->type, apartment.type);
+    return *this;
 }
 
 std::istream &operator>>(std::istream &is, Apartment &entity) {

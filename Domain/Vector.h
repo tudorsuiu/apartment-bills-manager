@@ -66,7 +66,7 @@ public:
     }
 
     Vector<T> &operator=(const Vector<T> &vector) {
-        this->size = vector._size;
+        this->_size = vector._size;
         this->_capacity = vector._capacity;
         delete[] this->_entities;
         for(int i = 0; i < _size; i++) {

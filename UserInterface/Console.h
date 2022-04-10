@@ -7,11 +7,11 @@
 
 
 #include <iostream>
-#include "../Repository/Repository.h"
+#include "../Service/Service.h"
 
 class Console {
 private:
-    Repository<Apartment> repository;
+    Service apartmentService;
 public:
     void showMenu();
     void runMenu();

@@ -14,7 +14,9 @@ template<class T> class Repository {
 private:
     Vector<T> entities;
 public:
-    Repository() = default;
+    Repository() {
+        this->entities = Vector<T>();
+    }
 
     Repository(const Repository<T> &repository) {
         this->entities = repository.entities;
@@ -24,6 +26,18 @@ public:
 
     void addEntity(T entity) {
         this->entities.push_back(entity);
+    }
+
+    T readEntity(int position) {
+        return this->entities[position];
+    }
+
+    void updateEntity(int position, T newEntity) {
+        entities.replace(position, newEntity);
+    }
+
+    void deleteEntity(int position) {
+        entities.remove(position);
     }
 
     Vector<T> getAll() {

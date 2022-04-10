@@ -4,6 +4,8 @@
 
 #include "Test.h"
 #include "../Domain/Apartment.h"
+#include "../Repository/Repository.h"
+#include "../Service/Service.h"
 #include <cassert>
 #include <iostream>
 #include <cstring>
@@ -42,8 +44,55 @@ void Test::setters() {
     delete[] type;
 }
 
+void Test::repository() {
+    Repository<Apartment> repository;
+    assert(repository.getSize() == 0);
+
+    char* type = new char[10]{"asociatie"};
+    Apartment apartment(32, type, 98);
+
+    repository.addEntity(apartment);
+    assert(repository.getSize() == 1);
+
+    repository.deleteEntity(32);
+    assert(repository.getSize() == 0);
+
+    delete[] type;
+}
+
+void Test::service() {
+    Service service;
+    assert(service.read().size() == 0);
+
+    char* type = new char[10]{"asociatie"};
+    char* type1 = new char[4]{"gaz"};
+
+    Apartment apartment(32, type, 98);
+    Apartment apartment1(56, type1, 100);
+
+    service.create(32, type, 98);
+    assert(service.read()[0] == apartment);
+
+    service.create(56, type1, 100);
+    assert(service.read()[1] == apartment1);
+
+    service.del(1);
+    assert(service.read().size() == 1);
+
+    service.update(0, 56, type1, 100);
+    assert(service.read()[0] == apartment1);
+
+    service.del(0);
+    assert(service.read().size() == 0);
+
+    delete[] type;
+    delete[] type1;
+}
+
 void Test::all() {
     getters();
     setters();
-    std::cout << "All tests passed!";
+    repository();
+    service();
+    std::cout << "All tests passed!" << '\n' << '\n';
 }

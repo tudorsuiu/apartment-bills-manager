@@ -57,6 +57,28 @@ void Apartment::setTotal(unsigned int total) {
     this->total = total;
 }
 
+bool Apartment::operator<(const Apartment &apartment) const {
+    if(strcmp(type, apartment.type) == 0) {
+        if (total < apartment.total)
+            return true;
+        if (apartment.total < total)
+            return false;
+    }
+    return false;
+}
+
+bool Apartment::operator>(const Apartment &apartment) const {
+    return apartment < *this;
+}
+
+bool Apartment::operator<=(const Apartment &apartment) const {
+    return !(apartment < *this);
+}
+
+bool Apartment::operator>=(const Apartment &apartment) const {
+    return !(*this < apartment);
+}
+
 bool Apartment::operator==(const Apartment &entity) const {
     return this->number == entity.number && this->total == entity.total &&
     std::strcmp(this->type, entity.type) == 0;
@@ -67,9 +89,7 @@ bool Apartment::operator!=(const Apartment &entity) const {
 }
 
 Apartment &Apartment::operator=(const Apartment &apartment) {
-    if(this->type != nullptr) {
-        delete[] this->type;
-    }
+    delete[] this->type;
     this->total = apartment.total;
     this->number = apartment.number;
     this->type = new char[strlen(apartment.type) + 1];
@@ -98,6 +118,6 @@ std::istream &operator>>(std::istream &is, Apartment &entity) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Apartment &entity) {
-    os << '\n' << "Apartment number: " << entity.number << '\n' << "Bill type: " << entity.type << '\n' << "Bill total: " << entity.total << '\n';
+    os << "Apartment number: " << entity.number << '\n' << "Bill type: " << entity.type << '\n' << "Bill total: " << entity.total << '\n';
     return os;
 }

@@ -53,6 +53,17 @@ public:
         _size++;
     }
 
+    void replace(int position, const T &newEntity) {
+        this->_entities[position] = newEntity;
+    }
+
+    void remove(int position) {
+        for(int i = position; i < this->_size - 1; i++) {
+            _entities[i] = _entities[i + 1];
+        }
+        this->_size--;
+    }
+
     int size() const {
         return this->_size;
     }
@@ -69,6 +80,7 @@ public:
         this->_size = vector._size;
         this->_capacity = vector._capacity;
         delete[] this->_entities;
+        T* _entities = new T[_capacity];
         for(int i = 0; i < _size; i++) {
             this->_entities[i] = vector._entities[i];
         }
@@ -77,7 +89,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Vector<T> &vector) {
         for(int i = 0; i < vector._size; i++) {
-            os << vector[i] << '\n';
+            os << "Id:" << i + 1 << '\n' << vector[i] << '\n';
         }
         return os;
     }

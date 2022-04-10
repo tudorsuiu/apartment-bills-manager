@@ -10,6 +10,8 @@ class Test {
 public:
     void getters();
     void setters();
+    void repository();
+    void service();
     void all();
 };
 

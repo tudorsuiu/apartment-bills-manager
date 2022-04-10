@@ -21,13 +21,19 @@ public:
 
     unsigned int getNumber() const;
     void setNumber(unsigned int number);
+
     char *getType() const;
     void setType(char *type);
+
     unsigned int getTotal() const;
     void setTotal(unsigned int total);
 
     Apartment& operator=(const Apartment& apartment);
 
+    bool operator<(const Apartment &rhs) const;
+    bool operator>(const Apartment &rhs) const;
+    bool operator<=(const Apartment &rhs) const;
+    bool operator>=(const Apartment &rhs) const;
     bool operator==(const Apartment &entity) const;
     bool operator!=(const Apartment &entity) const;
 

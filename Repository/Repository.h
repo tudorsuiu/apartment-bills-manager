@@ -7,6 +7,7 @@
 
 
 #include <ostream>
+#include <cstring>
 #include "../Domain/Apartment.h"
 #include "../Domain/Vector.h"
 
@@ -44,8 +45,48 @@ public:
         return this->entities;
     }
 
+    void setAll(Vector<T> newEntities) {
+        this->entities = newEntities;
+    }
+
     T getEntity(int index) {
         return entities.at(index);
+    }
+
+    int getEntityPosByNumber(unsigned int apartmentNumber) {
+        for(int i = 0; i < entities.size(); i++) {
+            if(entities[i].getNumber() == apartmentNumber) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    int getEntityPosByType(const char* type) {
+        for(int i = 0; i < entities.size(); i++) {
+            if(std::strcmp(entities[i].getType(), type) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    int getEntityPosByTotal(unsigned int total) {
+        for(int i = 0; i < entities.size(); i++) {
+            if(entities[i].getTotal() == total) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    int getEntityPosByNumberAndType(unsigned int apartmentNumber, const char* type) {
+        for(int i = 0; i < entities.size(); i++) {
+            if(std::strcmp(entities[i].getType(), type) == 0 && entities[i].getNumber() == apartmentNumber) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     int getSize() {

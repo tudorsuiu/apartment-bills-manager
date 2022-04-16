@@ -12,6 +12,7 @@ public:
     void setters();
     void repository();
     void service();
+    void functionalities();
     void all();
 };
 

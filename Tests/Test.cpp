@@ -3,7 +3,7 @@
 //
 
 #include "Test.h"
-#include "../Domain/Apartment.h"
+#include "../Domain/ApartmentBill.h"
 #include "../Repository/Repository.h"
 #include "../Service/Service.h"
 #include <cassert>
@@ -11,7 +11,7 @@
 #include <cstring>
 
 void Test::getters() {
-    Apartment apartment;
+    ApartmentBill apartment;
 
     assert(apartment.getNumber() == 0);
     assert(apartment.getType() == nullptr);
@@ -19,7 +19,7 @@ void Test::getters() {
 
     char* type = new char[10]{"asociatie"};
 
-    Apartment apartment1(32, type, 98);
+    ApartmentBill apartment1(32, type, 98);
 
     assert(apartment1.getNumber() == 32);
     assert(std::strcmp(apartment1.getType(), type) == 0);
@@ -29,7 +29,7 @@ void Test::getters() {
 }
 
 void Test::setters() {
-    Apartment apartment;
+    ApartmentBill apartment;
 
     char* type = new char[4]{"gaz"};
 
@@ -45,11 +45,11 @@ void Test::setters() {
 }
 
 void Test::repository() {
-    Repository<Apartment> repository;
+    Repository<ApartmentBill> repository;
     assert(repository.getSize() == 0);
 
     char* type = new char[10]{"asociatie"};
-    Apartment apartment(32, type, 98);
+    ApartmentBill apartment(32, type, 98);
 
     repository.addEntity(apartment);
     assert(repository.getSize() == 1);
@@ -67,8 +67,8 @@ void Test::service() {
     char* type = new char[10]{"asociatie"};
     char* type1 = new char[4]{"gaz"};
 
-    Apartment apartment(32, type, 98);
-    Apartment apartment1(56, type1, 100);
+    ApartmentBill apartment(32, type, 98);
+    ApartmentBill apartment1(56, type1, 100);
 
     service.create(apartment);
     assert(service.read()[0] == apartment);
@@ -80,7 +80,7 @@ void Test::service() {
     assert(service.read().size() == 1);
 
 
-    Apartment newApartment(56, type1, 100);
+    ApartmentBill newApartment(56, type1, 100);
     service.update(0, newApartment);
     assert(service.read()[0] == apartment1);
 
@@ -94,18 +94,18 @@ void Test::service() {
 void Test::functionalities() {
     Service apartmentService;
 
-    Apartment a1(32, "gaz", 122);
-    Apartment a2(56, "electricitate", 124);
-    Apartment a3(12, "apa", 243);
-    Apartment a4(24, "internet", 139);
-    Apartment a5(24, "gaz", 197);
-    Apartment a6(56, "gaz", 239);
-    Apartment a7(12, "electricitate", 100);
-    Apartment a8(12, "internet", 135);
-    Apartment a9(32, "electricitate", 71);
-    Apartment a10(40, "electricitate", 249);
-    Apartment a11(43, "apa", 80);
-    Apartment a12(56, "internet", 65);
+    ApartmentBill a1(32, "gaz", 122);
+    ApartmentBill a2(56, "electricitate", 124);
+    ApartmentBill a3(12, "apa", 243);
+    ApartmentBill a4(24, "internet", 139);
+    ApartmentBill a5(24, "gaz", 197);
+    ApartmentBill a6(56, "gaz", 239);
+    ApartmentBill a7(12, "electricitate", 100);
+    ApartmentBill a8(12, "internet", 135);
+    ApartmentBill a9(32, "electricitate", 71);
+    ApartmentBill a10(40, "electricitate", 249);
+    ApartmentBill a11(43, "apa", 80);
+    ApartmentBill a12(56, "internet", 65);
 
     apartmentService.create(a1);
     apartmentService.create(a2);
@@ -168,19 +168,19 @@ void Test::functionalities() {
     apartmentService.updateByNumberAndType(56, "electricitate", 98);
     apartmentService.updateByNumberAndType(43, "apa", 30);
 
-    assert(apartmentService.read()[3] == Apartment(32, "gaz", 85));
-    assert(apartmentService.read()[4] == Apartment(56, "electricitate", 98));
-    assert(apartmentService.read()[10] == Apartment(43, "apa", 30));
+    assert(apartmentService.read()[3] == ApartmentBill(32, "gaz", 85));
+    assert(apartmentService.read()[4] == ApartmentBill(56, "electricitate", 98));
+    assert(apartmentService.read()[10] == ApartmentBill(43, "apa", 30));
 
     // Show all bills for an apartment.
-    Vector<Apartment> resultApartment = apartmentService.showAllBillsForApartment(32);
+    Vector<ApartmentBill> resultApartment = apartmentService.showAllBillsForApartment(32);
 
     assert(resultApartment.size() == 2);
-    assert(resultApartment[0] == Apartment(32, "gaz", 85));
-    assert(resultApartment[1] == Apartment(32, "electricitate", 71));
+    assert(resultApartment[0] == ApartmentBill(32, "gaz", 85));
+    assert(resultApartment[1] == ApartmentBill(32, "electricitate", 71));
 
     // Show all bills above a specified price.
-    Vector<Apartment> resultAbovePrice = apartmentService.showAllAboveThisPrice(130);
+    Vector<ApartmentBill> resultAbovePrice = apartmentService.showAllAboveThisPrice(130);
 
     assert(resultAbovePrice.size() == 6);
     assert(resultAbovePrice[0] == a3);
@@ -191,22 +191,26 @@ void Test::functionalities() {
     assert(resultAbovePrice[5] == a10);
 
     // Show all bills equal to a specified price.
+    Vector<ApartmentBill> resultEqualPrice = apartmentService.showAllEqualThisPrice(197);
+
+    assert(resultEqualPrice.size() == 1);
+    assert(resultEqualPrice[0] == a5);
 
     // Determine the sum of all bills of a specified type.
     unsigned int sum = apartmentService.sumBillsOfType("electricitate");
     assert(sum == 518);
 
     // Determine the highest bill of an apartment.
-    Apartment highest = apartmentService.highestBillOfApartment(12);
+    ApartmentBill highest = apartmentService.highestBillOfApartment(12);
     assert(highest == a3);
 
     // Sort the bills of a specified type descending by total.
-    Vector<Apartment> sorted = apartmentService.sortByType("electricitate");
+    Vector<ApartmentBill> sorted = apartmentService.sortByType("electricitate");
 
     assert(sorted.size() == 4);
     assert(sorted[0] == a10);
     assert(sorted[1] == a7);
-    assert(sorted[2] == a2);
+    assert(sorted[2] == ApartmentBill(56, "electricitate", 98));
     assert(sorted[3] == a9);
 
     // Filter by type.
@@ -236,11 +240,65 @@ void Test::functionalities() {
     assert(apartmentService.read()[2] == a11);
 }
 
+void Test::undo() {
+    Service apartmentService;
+
+    ApartmentBill a1(32, "gaz", 122);
+    ApartmentBill a2(56, "electricitate", 124);
+    ApartmentBill a3(12, "apa", 243);
+    ApartmentBill a4(24, "internet", 139);
+    ApartmentBill a5(24, "gaz", 197);
+
+    apartmentService.create(a1);
+    apartmentService.create(a2);
+    apartmentService.create(a3);
+    apartmentService.create(a4);
+    apartmentService.create(a5);
+
+    // Deletes all apartment bills for an apartment.
+    apartmentService.deleteAllByApartmentNumber(24);
+    assert(apartmentService.read().size() == 3);
+    apartmentService.undo();
+    assert(apartmentService.read().size() == 5);
+
+    // Deletes all apartment bills from an interval of apartments.
+    apartmentService.deleteAllByApartmentInterval(10, 25);
+    assert(apartmentService.read().size() == 2);
+    apartmentService.undo();
+    assert(apartmentService.read().size() == 5);
+
+    // Deletes all apartment bills that contain a specified type.
+    apartmentService.deleteAllByType("gaz");
+    assert(apartmentService.read().size() == 3);
+    apartmentService.undo();
+    assert(apartmentService.read().size() == 5);
+
+    // Update by apartment number and type.
+    apartmentService.updateByNumberAndType(32, "gaz", 120);
+    assert(apartmentService.read()[0] == ApartmentBill(32, "gaz", 120));
+    apartmentService.undo();
+    assert(apartmentService.read()[0] == a1);
+
+    // Filter by type.
+    apartmentService.filterByType("gaz");
+    assert(apartmentService.read().size() == 2);
+    apartmentService.undo();
+    assert(apartmentService.read().size() == 5);
+
+
+    // Filter by total (under a specified price).
+    apartmentService.filterByTotal(150);
+    assert(apartmentService.read().size() == 3);
+    apartmentService.undo();
+    assert(apartmentService.read().size() == 5);
+}
+
 void Test::all() {
     getters();
     setters();
     repository();
     service();
     functionalities();
+    undo();
     std::cout << "All tests passed!" << '\n' << '\n';
 }

@@ -24,6 +24,7 @@ void Console::showMenu() {
     std::cout << "d. Sort the bills of a specified type descending by total." << '\n';
     std::cout << "e. Filter by type." << '\n';
     std::cout << "f. Filter by total (under a specified price)." << '\n';
+    std::cout << "u. Undo." << '\n';
     std::cout << "x. Exit." << '\n';
     std::cout << "__________________________________" << '\n';
     std::cout << "Select option:";
@@ -38,7 +39,7 @@ void Console::runMenu() {
         switch (option) {
             case '1': {
                 unsigned int apartmentNumber;
-                std::cout << "Apartment number:"; std::cin >> apartmentNumber;
+                std::cout << "ApartmentBill number:"; std::cin >> apartmentNumber;
 
                 std::string billType;
                 std::cout << "Bill type:"; std::cin >> billType;
@@ -46,7 +47,7 @@ void Console::runMenu() {
 
                 unsigned int billTotal;
                 std::cout << "Bill total:"; std::cin >> billTotal;
-                Apartment apartment(apartmentNumber, billType_char, billTotal);
+                ApartmentBill apartment(apartmentNumber, billType_char, billTotal);
 
                 apartmentService.create(apartment);
                 break;
@@ -69,7 +70,7 @@ void Console::runMenu() {
                 unsigned int billTotal;
                 std::cout << "New bill total:"; std::cin >> billTotal;
 
-                Apartment newApartment(apartmentNumber, billType_char, billTotal);
+                ApartmentBill newApartment(apartmentNumber, billType_char, billTotal);
 
                 apartmentService.update(index - 1, newApartment);
                 break;
@@ -107,7 +108,7 @@ void Console::runMenu() {
             }
             case '8': {
                 unsigned int apartmentNumber;
-                std::cout << "Apartment number:";
+                std::cout << "ApartmentBill number:";
                 std::cin >> apartmentNumber;
 
                 std::string type;
@@ -124,7 +125,7 @@ void Console::runMenu() {
             }
             case '9': {
                 unsigned int apartmentNumber;
-                std::cout << "Apartment number:";
+                std::cout << "ApartmentBill number:";
                 std::cin >> apartmentNumber;
 
                 std::cout << apartmentService.showAllBillsForApartment(apartmentNumber);
@@ -157,7 +158,7 @@ void Console::runMenu() {
             }
             case 'c': {
                 unsigned int apartmentNumber;
-                std::cout << "Apartment number:";
+                std::cout << "ApartmentBill number:";
                 std::cin >> apartmentNumber;
 
                 std::cout << apartmentService.highestBillOfApartment(apartmentNumber);
@@ -188,6 +189,9 @@ void Console::runMenu() {
 
                 apartmentService.filterByTotal(total);
                 break;
+            }
+            case 'u': {
+                apartmentService.undo();
             }
             case 'x':
                 break;

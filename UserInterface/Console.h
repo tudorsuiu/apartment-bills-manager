@@ -13,7 +13,14 @@ class Console {
 private:
     Service apartmentService;
 public:
+    /**
+     * Print our menu
+     */
     void showMenu();
+
+    /**
+     * Runs menu
+     */
     void runMenu();
 };
 

@@ -55,8 +55,8 @@ build CMakeFiles/lab_78_tudorsuiu.dir/main.cpp.obj: CXX_COMPILER__lab_78_tudorsu
   OBJECT_DIR = CMakeFiles\lab_78_tudorsuiu.dir
   OBJECT_FILE_DIR = CMakeFiles\lab_78_tudorsuiu.dir
 
-build CMakeFiles/lab_78_tudorsuiu.dir/Domain/Apartment.cpp.obj: CXX_COMPILER__lab_78_tudorsuiu_Debug C$:/Users/Tudor/Desktop/Laboratoare/lab-78-tudorsuiu/Domain/Apartment.cpp || cmake_object_order_depends_target_lab_78_tudorsuiu
-  DEP_FILE = CMakeFiles\lab_78_tudorsuiu.dir\Domain\Apartment.cpp.obj.d
+build CMakeFiles/lab_78_tudorsuiu.dir/Domain/ApartmentBill.cpp.obj: CXX_COMPILER__lab_78_tudorsuiu_Debug C$:/Users/Tudor/Desktop/Laboratoare/lab-78-tudorsuiu/Domain/ApartmentBill.cpp || cmake_object_order_depends_target_lab_78_tudorsuiu
+  DEP_FILE = CMakeFiles\lab_78_tudorsuiu.dir\Domain\ApartmentBill.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\lab_78_tudorsuiu.dir
   OBJECT_FILE_DIR = CMakeFiles\lab_78_tudorsuiu.dir\Domain
@@ -87,7 +87,7 @@ build CMakeFiles/lab_78_tudorsuiu.dir/Service/Service.cpp.obj: CXX_COMPILER__lab
 #############################################
 # Link the executable lab_78_tudorsuiu.exe
 
-build lab_78_tudorsuiu.exe: CXX_EXECUTABLE_LINKER__lab_78_tudorsuiu_Debug CMakeFiles/lab_78_tudorsuiu.dir/main.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/Domain/Apartment.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/Tests/Test.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/UserInterface/Console.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/Service/Service.cpp.obj
+build lab_78_tudorsuiu.exe: CXX_EXECUTABLE_LINKER__lab_78_tudorsuiu_Debug CMakeFiles/lab_78_tudorsuiu.dir/main.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/Domain/ApartmentBill.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/Tests/Test.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/UserInterface/Console.cpp.obj CMakeFiles/lab_78_tudorsuiu.dir/Service/Service.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab_78_tudorsuiu.dir

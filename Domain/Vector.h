@@ -7,7 +7,7 @@
 
 
 #include <ostream>
-#include "Apartment.h"
+#include "ApartmentBill.h"
 
 template<class T> class Vector {
 private:
@@ -72,7 +72,7 @@ public:
         return this->_entities[index];
     }
 
-    T operator[](int index) const {
+    T& operator[](int index) const {
         return this->_entities[index];
     }
 
@@ -80,7 +80,7 @@ public:
         this->_size = vector._size;
         this->_capacity = vector._capacity;
         delete[] this->_entities;
-        T* _entities = new T[_capacity];
+        this->_entities = new T[_capacity];
         for(int i = 0; i < _size; i++) {
             this->_entities[i] = vector._entities[i];
         }
@@ -93,6 +93,13 @@ public:
         }
         return os;
     }
+
+    T pop_back() {
+        T value = _entities[_size - 1];
+        this->remove(_size - 1);
+        return value;
+    }
+
 };
 
 #endif //LAB_78_TUDORSUIU_VECTOR_H

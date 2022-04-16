@@ -13,6 +13,7 @@ public:
     void repository();
     void service();
     void functionalities();
+    void undo();
     void all();
 };
 

@@ -127,12 +127,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Domain/Apartment.cpp",
+			"path" : "Domain/ApartmentBill.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Domain/Apartment.h",
+			"path" : "Domain/ApartmentBill.h",
 			"sourceGroupIndex" : 1
 		},
 		{
